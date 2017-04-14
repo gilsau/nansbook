@@ -1,0 +1,51 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Signup";
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/scripts/signup.js"></script>
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <form id="frmSignup" action="~/account/signup" method="post">
+        <br />
+        <br />
+        <img src="~/images/logo1.jpg" class="logo1 center-block" />
+        <h4 class="text-center">
+            This screen is for business owners/admins.<br />
+            Staff members will be invited from inside the app.
+        </h4>
+        <div id="msgBox">
+            @if (TempData["msg"] != null)
+            {
+                <span class="blue bold">@Html.Raw(TempData["msg"])</span>
+            }
+            else
+            {
+                <text>&nbsp;</text>
+            }
+        </div>
+        <br />
+        <input type="text" placeholder="first name" class="textbox1" name="FirstName" />
+        <br />
+        <br />
+        <input type="text" placeholder="last name" class="textbox1" name="LastName" />
+        <br />
+        <br />
+        <input type="text" placeholder="email" class="textbox1" name="Email" />
+        <br />
+        <br />
+        <input type="password" placeholder="password" class="textbox1" name="Password" />
+        <br />
+        <br />
+        <input type="password" placeholder="confirm password" class="textbox1" name="Password2" />
+        <br />
+        <br />
+        <br />
+        <div class="blueTransBack1">
+            <input type="submit" value="CREATE ADMIN ACCOUNT" class="button1" />
+        </div>
+    </form>
+</div>

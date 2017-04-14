@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Confirm";
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <br />
+    <br />
+    <img src="~/images/logo1.jpg" class="logo1 center-block" />
+    <h4 id="msgBox">
+        @if (TempData["msg"] != null)
+        {
+            <span class="blue bold">@Html.Raw(TempData["msg"])</span>
+        }
+        else
+        {
+            <text>&nbsp;</text>
+        }
+    </h4>
+</div>

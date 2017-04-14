@@ -1,0 +1,106 @@
+﻿$(document).ready(function () {
+    
+    //add btn, before modal opens, reset fields in modal
+    $('#btn_add').click(function () {
+        $('#frmManage').trigger("reset");
+
+        $('#title_header').text('Add ' + $('#title_header').text().replace( $('#title_header').text().split(' ')[0], ''));
+        $('#btn_update_modal').hide();
+        $('#btn_add_modal').show();
+        $('#frmManage').attr('action', '../../giftcard/add');
+    });
+
+    //edit btn, before modal opens, fill info in modal
+    $('.edit_row').click(function () {
+        var btn = $(this);
+
+        //fill data in fields
+        $('#hidId').val($(this).attr('data-id'));
+        $('#txtName').val(btn.attr('data-name'));
+        $('#txtCreditAmt').val(Number(btn.attr('data-creditamt')).toFixed(2));
+        $('#txtExpDate').val(btn.attr('data-expdate'));
+        
+        $('#title_header').text('Update ' + $('#title_header').text().replace($('#title_header').text().split(' ')[0], ''));
+        $('#btn_update_modal').show();
+        $('#btn_add_modal').hide();
+        $('#frmManage').attr('action', '../../giftcard/update');
+    });
+
+    //add/update button in modal
+    $('.manageBtn').click(function (e) {
+        var errMsg = $('#errMsg');
+        var validated = true;
+        var oName = $('#txtName');
+        var oCreditAmt = $('#txtCreditAmt');
+        var oExpDate = $('#txtExpDate');
+        
+        //validate inputs
+        if ($.trim(oName.val()) === '') {
+            validated = false;
+            errMsg.text('Name is required.');
+            oName.select();
+        }       
+        else if ($.trim(oCreditAmt.val()) === '') {
+            validated = false;
+            errMsg.text('Credit Amount is required.');
+            oCreditAmt.select();
+        }       
+        else if (isNaN(oCreditAmt.val())) {
+            validated = false;
+            errMsg.text('Credit Amount must be numeric.');
+            oCreditAmt.select();
+        }       
+        else if ($.trim(oExpDate.val()) === '') {
+            validated = false;
+            errMsg.text('Expiration Date is required.');
+            oExpDate.select();
+        }
+
+        if (validated) {
+
+            //loading sign
+            ShowLoading();
+
+            //wait, then submit form
+            setTimeout(function () {
+                $('#frmManage').submit();
+            }, 1000);
+        }
+
+        e.preventDefault();
+        return false;
+
+    });
+
+    //delete btn, before modal opens, prepare vars for deletion
+    $('.rem_row').click(function () {
+        
+        //get id to delete
+        $('#hidId').val($(this).attr('data-id'));
+
+        //set form action
+        $('#frmManage').attr('action', '../../giftcard/delete');
+
+        //set title for modal
+        $('.del_name').text($(this).attr('data-name'));
+    });
+
+    //proceed btn in modal, confirm delete and submit form
+    $('#del_confirm_proceed').click(function () {
+
+        ShowLoading();
+        
+        //wait, then submit form
+        setTimeout(function () {
+            $('#frmManage').submit();
+        }, 1000);
+    });
+
+    //modal is open
+    $('#modal_manage').on('shown.bs.modal', function () {
+        $('#txtName').focus();
+    });
+
+    //datepicker
+    $('.datepicker').datepicker();
+});

@@ -1,0 +1,17 @@
+﻿@{
+    string[] currUserRoles = Roles.GetRolesForUser(WebSecurity.CurrentUserName);
+    string entryPg = currUserRoles.Contains("Technician") ? "indsalesentry" : "storesalesentry";
+    string expPg = currUserRoles.Contains("Technician") ? "indexpentry" : "storeexpentry";
+    string rptPg = currUserRoles.Contains("Technician") ? "indsales" : "storesales";
+}
+
+<div id="footer" class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container-fluid nopad">
+        <div class="row-fluid">
+            <div class="col-xs-3 text-center footer-btn-back1 white" style="border-right:solid 1px #00bfe1;"><a href="~/sales/@entryPg" class="glyphicon glyphicon-usd footer-icon btn"></a><br />sales</div>
+            <div class="col-xs-3 text-center footer-btn-back1 white" style="border-right:solid 1px #00bfe1;"><a href="~/expenses/@expPg" class="glyphicon glyphicon-minus footer-icon btn"></a><br />expenses</div>
+            <div class="col-xs-3 text-center footer-btn-back1 white" style="border-right:solid 1px #00bfe1;"><a href="~/reports/@rptPg" class="glyphicon glyphicon-stats footer-icon btn"></a><br />reports</div>
+            <div class="col-xs-3 text-center footer-btn-back1 white"><a href="~/account/viewprofile" class="glyphicon glyphicon-user footer-icon btn"></a><br />account</div>
+        </div>
+    </div>
+</div>

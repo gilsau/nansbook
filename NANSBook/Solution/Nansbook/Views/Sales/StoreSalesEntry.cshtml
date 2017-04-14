@@ -1,0 +1,150 @@
+﻿@using Nansbook;
+@model List<SalesEntry>
+@{
+    ViewBag.Title = "Store Sales Entry";
+    string pgTopic = "STORE SALES";
+}
+
+@section stylesheets{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+}
+
+@section scripts{
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/scripts/storesales.js"></script>
+}
+
+<div class="red bold">@Html.Raw(TempData["msg"])</div>
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<!--<a id="delSelected" href="#modal_del_confirm" data-toggle="modal" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span>&nbsp;Selected</a>-->
+<table class="table table-striped">
+    <tr>
+        <!--<th class="text-center"><input type="checkbox" id="chkAll" /></th>-->
+        <th>Technician</th>
+        <th>Sales Amt</th>
+        <th>Tip</th>
+        <th>Deduction</th>
+        <th>Discount</th>
+        <th>Date</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach(SalesEntry sale in Model)
+    {
+        <tr>
+            <!--<td class="text-center"><input type="checkbox" id="chkRow" name="chkRow" data-id="@{/*sale.Id*/}" /></td>-->
+            <td>@string.Format("{0} {1}", sale.UserProfile.FirstName, sale.UserProfile.LastName)</td>
+            <td>@(sale.ProductId != null ? sale.Category1.Name : sale.Category2.Name)</td>
+            <td>@sale.SaleAmt</td>
+            <td>@sale.TipAmt</td>
+            <td>@sale.DeductionAmt</td>
+            <td>@sale.Category.Name @sale.Category.Percentage% (@sale.Category.Price)</td>
+            <td>@string.Format("{0:dd/MM/yyyy}<br/>{0:HH:mm zzz}", sale.TimeOfSale)</td>
+            <td class="text-center">
+                <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                    data-id="@sale.Id" 
+                    data-techId="@sale.UserProfile1.UserId"
+                    data-service="@(sale.ServiceId != null ? sale.ServiceId : 0)"
+                    data-product="@(sale.ProductId != null ? sale.ProductId : 0)"
+                    data-saleAmt="@sale.SaleAmt"
+                    data-tipAmt="@sale.TipAmt"
+                    data-deductionAmt="@sale.DeductionAmt"
+                    data-discount="@sale.DiscountCategoryId"
+                    data-timeOfSale="@sale.TimeOfSale">
+                </a>
+                <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@sale.Id" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+
+<form id="frmManage" action="~/staff/add" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_add">ADD @pgTopic</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <span class="red bold">* Required</span>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Technician <span class="red bold">*</span></span>
+                        <select id="sel_techs" name="TechnicianId" class="form-control">
+                            <option value="0">Select Technician</option>
+                            @foreach(UserProfile tech in ViewBag.Technicians)
+                            { 
+                                <option value="@tech.UserId">@string.Format("{0} {1}", tech.FirstName, tech.LastName)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Service/Product </span>
+                        <select id="sel_service" name="ServiceId" class="form-control">
+                            <option value="0">Select Service or Product</option>
+                            @foreach (Category cat in ViewBag.Services)
+                            { 
+                                <option value="@cat.Id">Service - @cat.Name</option>
+                            }
+                            @foreach (Category cat in ViewBag.Products)
+                            { 
+                                <option value="@cat.Id">Product - @cat.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Tip Amount </span>
+                        <textarea id="txt_tipAmt" name="TipAmt" class="form-control"></textarea>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Deduction Amount </span>
+                        <input type="text" id="txt_deductionAmt" name="DeductionAmt" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Discount </span>
+                        <select id="sel_discount" name="DiscountId" class="form-control">
+                            <option value="0">Select Discount</option>
+                            @foreach (Category cat in ViewBag.Discounts)
+                            { 
+                                <option value="@cat.Id">@cat.Name @cat.Percentage% (@cat.Price)</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Time Of Sale <span class="red bold">*</span></span>
+                        <input type="text" id="txt_timeOfSale" name="TimeOfSale" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="btn btn-sm btn-primary" id="btn_add_modal">ADD @pgTopic</span>
+                    <span class="btn btn-sm btn-primary" id="btn_update_modal">UPDATE @pgTopic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hid_id" name="Id" />
+    <input type="hidden" id="hid_del" name="IdsForDelete" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>Delete Records Selected</h4>
+            </div>
+            <div class="modal-body">
+                The record(s) selected will be permanently deleted and cannot be recovered. Are you sure you want to proceed?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Proceed</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

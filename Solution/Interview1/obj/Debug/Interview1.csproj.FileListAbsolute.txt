@@ -1,0 +1,8 @@
+C:\projects\NANSBook\Solution\Interview1\bin\Debug\Interview1.exe.config
+C:\projects\NANSBook\Solution\Interview1\obj\Debug\Interview1.csprojResolveAssemblyReference.cache
+C:\projects\NANSBook\Solution\Interview1\bin\Debug\Interview1.exe
+C:\projects\NANSBook\Solution\Interview1\bin\Debug\Interview1.pdb
+C:\projects\NANSBook\Solution\Interview1\bin\Debug\EntityFramework.dll
+C:\projects\NANSBook\Solution\Interview1\bin\Debug\EntityFramework.xml
+C:\projects\NANSBook\Solution\Interview1\obj\Debug\Interview1.exe
+C:\projects\NANSBook\Solution\Interview1\obj\Debug\Interview1.pdb

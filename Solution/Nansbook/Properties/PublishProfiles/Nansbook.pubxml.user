@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAtuekGXbdbUi5xyxiYH4EMwAAAAACAAAAAAAQZgAAAAEAACAAAAA8iyD0ELbBFhGoC1TAIDpy4pbtDTDGYsf6mV09UAEIzQAAAAAOgAAAAAIAACAAAADufwJrKfbYuf1aQXwhjnPvkFNSZ43ixctiB7uFeJf9tiAAAAC35NIyToX9H56NIkzVqANxDAABheLRoAwxRKDQpTpglkAAAAAbGq6uw09t/Nwfw7hRIyd+rU1YaeLsOyHoTQMCKXmNOKf04JDXL9+/nwvPGoZ0sFFcgnv1cfHZQYJ0gjR3aZqa</EncryptedPassword>
+    <_PublishTargetUrl>ftp://techstarapps.com/nansbook.techstarapps.com/</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>03/31/2016 14:46:52</publishTime>
+    </File>
+    <File Include="bin/EntityFramework.dll">
+      <publishTime>03/31/2016 14:45:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>03/31/2016 14:46:25</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Mvc.FixedDisplayModes.dll">
+      <publishTime>03/31/2016 14:46:39</publishTime>
+    </File>
+    <File Include="bin/Nansbook.dll">
+      <publishTime>04/17/2016 23:17:03</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>03/31/2016 14:46:29</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>03/31/2016 14:46:38</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>03/31/2016 14:46:51</publishTime>
+    </File>
+    <File Include="bin/System.Web.Providers.dll">
+      <publishTime>03/31/2016 14:46:48</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>03/31/2016 14:46:33</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>03/31/2016 14:46:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>03/31/2016 14:46:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>03/31/2016 14:46:36</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>03/31/2016 14:46:53</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.Data.dll">
+      <publishTime>07/10/2012 13:03:34</publishTime>
+    </File>
+    <File Include="bin/WebMatrix.WebData.dll">
+      <publishTime>07/10/2012 13:03:36</publishTime>
+    </File>
+    <File Include="Css/bootstrap.min.css">
+      <publishTime>04/01/2016 15:51:42</publishTime>
+    </File>
+    <File Include="Css/jquery-ui.min.css">
+      <publishTime>04/01/2016 15:51:42</publishTime>
+    </File>
+    <File Include="Css/main.css">
+      <publishTime>04/17/2016 19:17:01</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>03/31/2016 14:45:09</publishTime>
+    </File>
+    <File Include="Images/Bookkeeping.jpg">
+      <publishTime>04/01/2016 20:02:54</publishTime>
+    </File>
+    <File Include="Images/logo1.jpg">
+      <publishTime>04/01/2016 15:42:53</publishTime>
+    </File>
+    <File Include="Nansbook.edmx.diagram">
+      <publishTime>04/17/2016 01:15:43</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>03/31/2016 14:46:55</publishTime>
+    </File>
+    <File Include="Scripts/bootstrap.min.js">
+      <publishTime>04/01/2016 15:50:39</publishTime>
+    </File>
+    <File Include="Scripts/global.js">
+      <publishTime>04/01/2016 21:22:21</publishTime>
+    </File>
+    <File Include="Scripts/jquery-2.1.3.min.js">
+      <publishTime>04/01/2016 15:50:39</publishTime>
+    </File>
+    <File Include="Scripts/jquery-ui.min.js">
+      <publishTime>04/01/2016 15:50:53</publishTime>
+    </File>
+    <File Include="Scripts/login.js">
+      <publishTime>04/17/2016 22:59:00</publishTime>
+    </File>
+    <File Include="Scripts/signup.js">
+      <publishTime>04/17/2016 18:47:00</publishTime>
+    </File>
+    <File Include="Views/Account/Confirm.cshtml">
+      <publishTime>04/17/2016 22:47:35</publishTime>
+    </File>
+    <File Include="Views/Account/Login.cshtml">
+      <publishTime>04/17/2016 22:59:16</publishTime>
+    </File>
+    <File Include="Views/Account/Signup.cshtml">
+      <publishTime>04/17/2016 19:13:46</publishTime>
+    </File>
+    <File Include="Views/Home/Index.cshtml">
+      <publishTime>04/17/2016 01:41:51</publishTime>
+    </File>
+    <File Include="Views/Shared/Error.cshtml">
+      <publishTime>03/31/2016 14:45:09</publishTime>
+    </File>
+    <File Include="Views/Shared/Header.cshtml">
+      <publishTime>04/01/2016 16:38:07</publishTime>
+    </File>
+    <File Include="Views/Shared/HeaderLogin.cshtml">
+      <publishTime>04/01/2016 19:28:47</publishTime>
+    </File>
+    <File Include="Views/Shared/_Layout.cshtml">
+      <publishTime>04/01/2016 16:35:54</publishTime>
+    </File>
+    <File Include="Views/Shared/_LayoutLogin.cshtml">
+      <publishTime>04/01/2016 19:36:55</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>03/31/2016 14:45:09</publishTime>
+    </File>
+    <File Include="Views/_ViewStart.cshtml">
+      <publishTime>03/31/2016 14:45:09</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>04/17/2016 23:17:10</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

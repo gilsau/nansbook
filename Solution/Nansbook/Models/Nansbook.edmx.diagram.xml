@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ddac88397142413a982a621d1bde54a8" Name="Diagram1">
+        <EntityTypeShape EntityType="NansbookModel.AppSetting" Width="1.5" PointX="7.5" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.CommissionRate" Width="1.5" PointX="7.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Deduction" Width="1.5" PointX="7.5" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Discount" Width="1.5" PointX="9.75" PointY="42.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Expense" Width="1.5" PointX="9.75" PointY="36.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.ExpenseCategory" Width="1.5" PointX="7.5" PointY="30.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.GiftCard" Width="1.5" PointX="7.5" PointY="34.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Notification" Width="1.5" PointX="7.5" PointY="38.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Paycheck" Width="1.5" PointX="7.5" PointY="41.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.PaymentMethod" Width="1.5" PointX="7.5" PointY="45.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Product" Width="1.5" PointX="7.5" PointY="49.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Salary" Width="1.5" PointX="7.5" PointY="54" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Sale" Width="1.5" PointX="12.75" PointY="44.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.SecurityQuestion" Width="1.5" PointX="0.75" PointY="29.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Service" Width="1.5" PointX="7.5" PointY="57.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.State" Width="1.5" PointX="0.75" PointY="26.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.Store" Width="1.5" PointX="3" PointY="23" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.UserProfile" Width="1.5" PointX="3" PointY="27.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.UserXStore" Width="1.5" PointX="5.25" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.webpages_Membership" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.webpages_OAuthMembership" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="NansbookModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="32.75" IsExpanded="true" />
+        <AssociationConnector Association="NansbookModel.fk_AppSetting_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_CommissionRate_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Deduction_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Discount_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Discount_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Discount_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Parent_Discount" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Expense_ExpenseCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Expense_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Expense_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_ExpenseCategory_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Parent_ExpenseCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_GiftCard_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Notification_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Paycheck_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_PaymentMethod_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Sale_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Tip_PaymentMethod" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Parent_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Product_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Sale_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Salary_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Sale_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Sale_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserProfile_SecurityQuestion1" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserProfile_SecurityQuestion2" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserProfile_SecurityQuestion3" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Parent_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_Service_UserXStore" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserProfile_State" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserXStore_Store" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.fk_UserXStore_UserProfile" ManuallyRouted="false" />
+        <AssociationConnector Association="NansbookModel.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

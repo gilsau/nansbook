@@ -1,0 +1,112 @@
+﻿@using Nansbook
+@model UserProfile
+@{
+    ViewBag.Title = string.Format("{0} {1}", Model.FirstName, Model.LastName);
+    int userid = Request.QueryString["id"] != null ? int.Parse(Request.QueryString["id"].ToString()) : WebSecurity.CurrentUserId;
+    bool isMyProfile = userid == WebSecurity.CurrentUserId;
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/scripts/profile.js"></script>
+}
+
+<img src="~/profilepics/@Model.PhotoFileName" class="roundImg2 center-block" />
+
+<div class="container">
+<form id="frmProfile" action="~/account/viewprofile" method="post" enctype="multipart/form-data">
+    
+    <div id="errMsg" class="red bold"></div>
+    <div class="input-group">
+        <span class="input-group-addon grad1 label1">Username (Email)</span>
+        <input type="text" disabled="disabled" class="form-control" value="@Model.UserName" />
+    </div>
+    <input type="hidden" name="UserName" value="@Model.UserName" />
+
+    @if(isMyProfile)
+    {
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Password </span>
+        <input type="password" id="txt_password1" name="Password" class="form-control" />
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Confirm Password </span>
+        <input type="password" id="txt_password2" name="Password2" class="form-control"  @if(!isMyProfile){<text>readonly="readonly"</text>} />
+    </div>
+    <br />
+    <br />
+    <span class="red bold">@if(isMyProfile) { <text>* Required</text> }else{ <text>&nbsp;</text> }</span>
+    }
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">First Name <span class="red bold">*</span></span>
+        @if(isMyProfile){<input type="text" id="txt_firstname" name="FirstName" class="form-control" value="@Model.FirstName" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.FirstName" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Middle Name</span>
+        @if(isMyProfile){<input type="text" id="txt_middlename" name="MiddleName" class="form-control" value="@Model.MiddleName" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.MiddleName" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Last Name <span class="red bold">*</span></span>
+        @if(isMyProfile){<input type="text" id="txt_lastname" name="LastName" class="form-control" value="@Model.LastName" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.LastName" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Nickname</span>
+        @if(isMyProfile){<input type="text" id="txt_nickname" name="NickName" class="form-control" value="@Model.NickName" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.NickName" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Address</span>
+        @if(isMyProfile){<input type="text" id="txt_address1" name="Address" class="form-control" value="@Model.Address1" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.Address1" /> }
+        @if(isMyProfile){<input type="text" id="txt_address2" name="Address2" class="form-control" value="@Model.Address2" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.Address2" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">City</span>
+        @if(isMyProfile){<input type="text" id="txt_city" name="City" class="form-control" value="@Model.City" />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.City" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">State <span class="red bold">*</span></span>
+        @if(isMyProfile){<select id="sel_state" name="StateId" class="form-control">
+            <option value="0">Select State</option>
+            @foreach (State state in ViewBag.States)
+            {
+                <option value="@state.Id" @if(state.Id == Model.State){<text>selected</text>}>@state.Name</option>
+            }
+        </select>}else{<input type="text" disabled="disabled" class="form-control" value="@Model.State1.Name" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Home Phone</span>
+        @if(isMyProfile){<input type="text" id="txt_homephone" name="HomePhone" class="form-control" value="@Model.HomePhone"  @if(!isMyProfile){<text>readonly="readonly"</text>} />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.HomePhone" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Mobile Phone</span>
+        @if(isMyProfile){<input type="text" id="txt_mobilephone" name="MobilePhone" class="form-control" value="@Model.MobilePhone"  @if(!isMyProfile){<text>readonly="readonly"</text>} />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.MobilePhone" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Social Security</span>
+        @if(isMyProfile){<input type="text" id="txt_socialsec" name="SocialSecurity" class="form-control" value="@Model.SocialSecurity"  @if(!isMyProfile){<text>readonly="readonly"</text>} />}else{<input type="text" disabled="disabled" class="form-control" value="@Model.SocialSecurity" /> }
+    </div>
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1">Role <span class="red bold">*</span></span>
+        @if(isMyProfile){<select id="sel_role" name="Role" class="form-control">
+            <option value="0">Select Role</option>
+            @foreach (webpages_Roles role in ViewBag.Roles)
+            {
+                <option value="@role.RoleName" @if(role.RoleId == Model.webpages_Roles.ElementAt(0).RoleId){<text>selected</text>}>@role.RoleName</option>
+            }
+        </select>}else{<input type="text" disabled="disabled" class="form-control" value="@Model.webpages_Roles.ElementAt(0).RoleName" /> }
+    </div>
+
+    @if(isMyProfile)
+    {
+    <div class="input-group margTop5">
+        <span class="input-group-addon grad1 label1"><img id="img_photo" src="~/profilepics/@Model.PhotoFileName" class="roundImg4" />  Photo</span>
+        <input type="file" id="file_photo" name="PhotoFileName" class="form-control" />
+    </div>
+    }
+    <br />
+    <br />
+     @if(isMyProfile){
+        <span class="btn btn-lg btn-primary center-block" id="btn_update">UPDATE</span>
+     }
+
+    <input type="hidden" id="hid_id" name="Id" value="@Model.UserId" />
+</form>
+</div>

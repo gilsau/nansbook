@@ -1,0 +1,435 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NansbookModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NansbookEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="UserProfiles" EntityType="NansbookModel.UserProfile" />
+    <EntitySet Name="webpages_Membership" EntityType="NansbookModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="NansbookModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="NansbookModel.webpages_Roles" />
+    <EntitySet Name="Categories" EntityType="NansbookModel.Category" />
+    <EntitySet Name="CategoryTypes" EntityType="NansbookModel.CategoryType" />
+    <EntitySet Name="DataEntryTypes" EntityType="NansbookModel.DataEntryType" />
+    <EntitySet Name="SalesEntries" EntityType="NansbookModel.SalesEntry" />
+    <EntitySet Name="SecurityQuestions" EntityType="NansbookModel.SecurityQuestion" />
+    <EntitySet Name="States" EntityType="NansbookModel.State" />
+    <AssociationSet Name="fk_Category_CreatedBy" Association="NansbookModel.fk_Category_CreatedBy">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Category_UpdatedBy" Association="NansbookModel.fk_Category_UpdatedBy">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_CreatedBy" Association="NansbookModel.fk_SalesEntry_CreatedBy">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_Technician" Association="NansbookModel.fk_SalesEntry_Technician">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_UpdatedBy" Association="NansbookModel.fk_SalesEntry_UpdatedBy">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion1" Association="NansbookModel.fk_UserProfile_SecurityQuestion1">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion2" Association="NansbookModel.fk_UserProfile_SecurityQuestion2">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion3" Association="NansbookModel.fk_UserProfile_SecurityQuestion3">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_State" Association="NansbookModel.fk_UserProfile_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Category_Category" Association="NansbookModel.fk_Category_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Category_CategoryType" Association="NansbookModel.fk_Category_CategoryType">
+      <End Role="CategoryType" EntitySet="CategoryTypes" />
+      <End Role="Category" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Category_Product" Association="NansbookModel.fk_Category_Product">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Category_Service" Association="NansbookModel.fk_Category_Service">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Category1" EntitySet="Categories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_Discount" Association="NansbookModel.fk_SalesEntry_Discount">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_Product" Association="NansbookModel.fk_SalesEntry_Product">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_SalesEntry_Service" Association="NansbookModel.fk_SalesEntry_Service">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="SalesEntry" EntitySet="SalesEntries" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="NansbookModel.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="NickName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="PhotoFileName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="SocialSecurity" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="SecQuestion1" Type="Int32" />
+    <Property Name="SecQuestion2" Type="Int32" />
+    <Property Name="SecQuestion3" Type="Int32" />
+    <Property Name="SecAnswer1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="SecAnswer2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="SecAnswer3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Categories" Relationship="NansbookModel.fk_Category_CreatedBy" FromRole="UserProfile" ToRole="Category" />
+    <NavigationProperty Name="Categories1" Relationship="NansbookModel.fk_Category_UpdatedBy" FromRole="UserProfile" ToRole="Category" />
+    <NavigationProperty Name="SalesEntries" Relationship="NansbookModel.fk_SalesEntry_CreatedBy" FromRole="UserProfile" ToRole="SalesEntry" />
+    <NavigationProperty Name="SalesEntries1" Relationship="NansbookModel.fk_SalesEntry_Technician" FromRole="UserProfile" ToRole="SalesEntry" />
+    <NavigationProperty Name="SalesEntries2" Relationship="NansbookModel.fk_SalesEntry_UpdatedBy" FromRole="UserProfile" ToRole="SalesEntry" />
+    <NavigationProperty Name="SecurityQuestion" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion1" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="SecurityQuestion1" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion2" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="SecurityQuestion2" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion3" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="State1" Relationship="NansbookModel.fk_UserProfile_State" FromRole="UserProfile" ToRole="State" />
+    <NavigationProperty Name="webpages_Roles" Relationship="NansbookModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="CategoryType" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Percentage" Type="Int32" />
+    <Property Name="ServiceId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="CreatedById" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedById" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserProfile" Relationship="NansbookModel.fk_Category_CreatedBy" FromRole="Category" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile1" Relationship="NansbookModel.fk_Category_UpdatedBy" FromRole="Category" ToRole="UserProfile" />
+    <NavigationProperty Name="Category1" Relationship="NansbookModel.fk_Category_Category" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category2" Relationship="NansbookModel.fk_Category_Category" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="CategoryType1" Relationship="NansbookModel.fk_Category_CategoryType" FromRole="Category" ToRole="CategoryType" />
+    <NavigationProperty Name="Category11" Relationship="NansbookModel.fk_Category_Product" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category3" Relationship="NansbookModel.fk_Category_Product" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="Category12" Relationship="NansbookModel.fk_Category_Service" FromRole="Category" ToRole="Category1" />
+    <NavigationProperty Name="Category4" Relationship="NansbookModel.fk_Category_Service" FromRole="Category1" ToRole="Category" />
+    <NavigationProperty Name="SalesEntries" Relationship="NansbookModel.fk_SalesEntry_Discount" FromRole="Category" ToRole="SalesEntry" />
+    <NavigationProperty Name="SalesEntries1" Relationship="NansbookModel.fk_SalesEntry_Product" FromRole="Category" ToRole="SalesEntry" />
+    <NavigationProperty Name="SalesEntries2" Relationship="NansbookModel.fk_SalesEntry_Service" FromRole="Category" ToRole="SalesEntry" />
+  </EntityType>
+  <EntityType Name="CategoryType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Categories" Relationship="NansbookModel.fk_Category_CategoryType" FromRole="CategoryType" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="DataEntryType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="SalesEntry">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="TechnicianId" Type="Int32" Nullable="false" />
+    <Property Name="ServiceId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="SaleAmt" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="TipAmt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DeductionAmt" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="DiscountCategoryId" Type="Int32" />
+    <Property Name="TimeOfSale" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedById" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedById" Type="Int32" Nullable="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserProfile" Relationship="NansbookModel.fk_SalesEntry_CreatedBy" FromRole="SalesEntry" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile1" Relationship="NansbookModel.fk_SalesEntry_Technician" FromRole="SalesEntry" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfile2" Relationship="NansbookModel.fk_SalesEntry_UpdatedBy" FromRole="SalesEntry" ToRole="UserProfile" />
+    <NavigationProperty Name="Category" Relationship="NansbookModel.fk_SalesEntry_Discount" FromRole="SalesEntry" ToRole="Category" />
+    <NavigationProperty Name="Category1" Relationship="NansbookModel.fk_SalesEntry_Product" FromRole="SalesEntry" ToRole="Category" />
+    <NavigationProperty Name="Category2" Relationship="NansbookModel.fk_SalesEntry_Service" FromRole="SalesEntry" ToRole="Category" />
+  </EntityType>
+  <EntityType Name="SecurityQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion1" FromRole="SecurityQuestion" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles1" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion2" FromRole="SecurityQuestion" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles2" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion3" FromRole="SecurityQuestion" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Abbrev" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.fk_UserProfile_State" FromRole="State" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="fk_Category_CreatedBy">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="1" />
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CreatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Category_UpdatedBy">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="1" />
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="UpdatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_CreatedBy">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="CreatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_Technician">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="TechnicianId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_UpdatedBy">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="UpdatedById" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion1">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion2">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion3">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_State">
+    <End Role="State" Type="NansbookModel.State" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Category_Category">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Category_CategoryType">
+    <End Role="CategoryType" Type="NansbookModel.CategoryType" Multiplicity="1" />
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CategoryType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category">
+        <PropertyRef Name="CategoryType" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Category_Product">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Category_Service">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="Category1" Type="NansbookModel.Category" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Category1">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_Discount">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="DiscountCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_Product">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_SalesEntry_Service">
+    <End Role="Category" Type="NansbookModel.Category" Multiplicity="0..1" />
+    <End Role="SalesEntry" Type="NansbookModel.SalesEntry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="SalesEntry">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="NansbookModel.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+  </Association>
+</Schema>

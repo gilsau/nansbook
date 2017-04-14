@@ -1,0 +1,138 @@
+﻿@using Nansbook.Models;
+@model IEnumerable<Discount>
+@{
+    ViewBag.Title = "Discounts";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/scripts/discounts.js"></script>
+}
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<p>&nbsp;</p>
+<div class="blue bold padLeft15">@Html.Raw(TempData["msg"])</div>
+<p>&nbsp;</p>
+<div class="container-fluid">
+    <table class="table table-striped">
+    @foreach(Discount disc in Model)
+    {
+        string parentCat = disc.Discount2 != null ? string.Format("{0} - ", disc.Discount2.Name) : string.Empty;
+        
+        <tr>
+            <td>@string.Format("{0}{1}({2}% Off)", parentCat, disc.Name, disc.Percentage)</td>
+            <td>Expires: @string.Format("{0:d}", disc.ExpirationDate)</td>
+            <td class="text-center">
+                <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                    data-id="@disc.Id" 
+                    data-name="@disc.Name"
+                    data-parentid="@disc.ParentId"
+                    data-productid="@disc.ProductId" 
+                    data-serviceid="@disc.ServiceId" 
+                    data-amount="@disc.Amount"
+                    data-pct="@disc.Percentage"
+                    data-expdate="@disc.ExpirationDate"
+                    data-storeid="@disc.UserXStore.Store.Id"
+                    >
+                </a>
+                <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@disc.Id" data-name="@disc.Name" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+</div>
+
+<form id="frmManage" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_header">Add Discount</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <div>&nbsp;</div>
+                    <div class="label1">Is this for a Product or Service?</div>
+                    <div>
+                        <input type="radio" name="rad_prodsvc" value="prod" />&nbsp;Product&nbsp;&nbsp;&nbsp;&nbsp<input type="radio" name="rad_prodsvc" value="svc" />&nbsp;Service
+                    </div>
+                    <div id="divProd" class="hide">
+                        <div class="margTop5 label1">Product <span class="red bold">(required)</span></div>
+                        <div><select id="selProduct" name="ProductId" class="form-control">
+                                <option value="0">select product</option>
+                                @foreach (Product prod in ViewBag.Products)
+                                { 
+                                    <option data-price="@prod.Price" value="@prod.Id">@prod.Name (@string.Format("{0:C}", prod.Price))</option>
+                                }
+                             </select>
+                        </div>
+                    </div>
+                    <div id="divSvc" class="hide">
+                        <div class="margTop5 label1">Service <span class="red bold">(required)</span></div>
+                        <div><select id="selService" name="ServiceId" class="form-control">
+                                <option value="0">select service</option>
+                                @foreach (Service svc in ViewBag.Services)  
+                                { 
+                                    <option data-price="@svc.Price" value="@svc.Id">@svc.Name (@string.Format("{0:C}", svc.Price))</option>
+                                }
+                             </select>
+                        </div>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="margTop5 label1">Parent Category <span class="blue bold">(optional)</span></div>
+                    <div><select id="selParent" name="ParentId" class="form-control">
+                            <option value="0">select category</option>
+                            @foreach (Discount disc in ViewBag.ParentDiscounts)
+                            { 
+                                <option value="@disc.Id">@disc. .Title</option>
+                            }
+                        </select>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="margTop5 label1">Name of Discount <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtName" name="Name" class="form-control" /></div>
+                    <table style="width:100%;">
+                        <tr>
+                            <td><div class="margTop5 label1">% Percentage Off Price <span class="red bold">(required)</span></div>
+                                <div><input type="text" id="txtPercentage" name="Percentage" class="form-control" /></div>
+                            </td>
+                            <td><div class="margTop5 label1">$ Dollar Amount</div>
+                                <div><input type="text" readonly="readonly" id="txtAmount" name="Amount" class="form-control" /></div>
+                            </td>
+                        </tr>
+                    </table>
+                    <div class="margTop5 label1">Expiration Date <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtExpDate" name="ExpirationDate" class="form-control datepicker" /></div>
+                    <div class="margTop5 label1">Description</div>
+                    <div><textarea id="txtDescription" name="Description" class="form-control" rows="5"></textarea></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_add_modal">Add Discount</button>
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_update_modal">Update Discount</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidId" name="Id" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>About To Delete "<span class="del_name"></span>"</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span class="del_name"></span>"?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Yes</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

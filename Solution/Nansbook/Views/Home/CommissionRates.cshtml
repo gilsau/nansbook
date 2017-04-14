@@ -1,0 +1,105 @@
+﻿@using Nansbook.Models;
+@model IEnumerable<UserXStore>
+@{
+    ViewBag.Title = "Commission Rates";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/scripts/commrates.js"></script>
+}
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<div>&nbsp;</div>
+<div class="blue bold padLeft15">@Html.Raw(TempData["msg"])</div>
+<div>&nbsp;</div>
+<div class="pad10 text-center"><b>store comm</b><br />this is the store's commission that is deducted from your sales.</div>
+<div class="pad10 text-center"><b>cash charge</b><br />the store takes this percentage from your paycheck, if you request to be paid in cash.</div>
+<div>&nbsp;</div>
+<div class="container-fluid nomargin nopad">
+    <table class="table table-striped">
+        <tr>
+            <th style="vertical-align:bottom">store</th>
+            <th style="vertical-align:bottom">store comm</th>
+            <th style="vertical-align:bottom">cash charge</th>
+            <th>&nbsp;</th>
+        </tr>
+        
+    @foreach(UserXStore userStore in Model)
+    {
+        var rate = userStore.CommissionRates.FirstOrDefault();
+        
+        if(rate != null)
+        {
+            <tr>
+                <td>@userStore.Store.Name</td>
+                <td>@rate.StoreCommPct %</td>
+                <td>@rate.StoreCashPct %</td>
+                <td class="text-center">
+                    <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                        data-id="@rate.Id" 
+                        data-storecommpct="@rate.StoreCommPct"
+                        data-storecashpct="@rate.StoreCashPct"
+                        data-storename="@userStore.Store.Name"
+                        data-userstoreid="@userStore.Id"
+                        >
+                    </a>
+                    <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@rate.Id" data-name="@userStore.Store.Name" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+</div>
+
+<form id="frmManage" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_header">Add Commission Rate for Store '<span id="modal_storename"></span>'</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <div class="margTop5 label1">Store <span class="red bold">(required)</span></div>
+                    <div><select id="selStore" name="UserXStoreId" class="form-control">
+                            <option value="0">select store</option>
+                            @foreach (UserXStore userStore in Model)
+                            { 
+                                <option value="@userStore.Id">@userStore.Store.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="margTop5 label1">Store Commission % <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtStoreCommPct" name="StoreCommPct" class="form-control" /></div>
+                    <div class="margTop5 label1">Cash Charge % <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtStoreCashPct" name="StoreCashPct" class="form-control" /></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_add_modal">Add Commission Rate</button>
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_update_modal">Update Commission Rate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidId" name="Id" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>About To Delete "<span class="del_name"></span>"</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span class="del_name"></span>"?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Yes</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

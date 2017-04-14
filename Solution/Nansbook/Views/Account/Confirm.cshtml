@@ -1,0 +1,67 @@
+﻿@using Nansbook;
+@model List<Nansbook.SecurityQuestion>
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Confirm";
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/scripts/confirm.js"></script>
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <br />
+    <br />
+    <img src="~/images/logo1.jpg" class="logo1 center-block" />
+    <h4 id="msgBox">
+        @if (TempData["msg"] != null)
+        {
+            <span class="blue bold">@Html.Raw(TempData["msg"])</span>
+        }
+        else
+        {
+            <text>&nbsp;</text>
+        }
+    </h4>
+    <br />
+    <div id="errMsg" class="red bold"></div>
+    <br />
+    @if(ViewBag.UserId != null)
+    {
+        <form id="frmConfirm" method="post" action="~/account/confirm">
+            <select id="sel_secQuestion1" name="SecurityQuestion1" class="textbox1">
+                <option value="0">Select Security Question</option>
+                @foreach (SecurityQuestion question in Model)
+                { 
+                    <option value="@question.Id">@question.Question</option>
+                }
+            </select><br />
+            <input type="text" id="txt_secAnswer1" name="SecurityAnswer1" class="dropdown1" /><br />
+            <br />
+            <select id="sel_secQuestion2" name="SecurityQuestion2" class="textbox1">
+                <option value="0">Select Security Question</option>
+                @foreach (SecurityQuestion question in Model)
+                { 
+                    <option value="@question.Id">@question.Question</option>
+                }
+            </select><br />
+            <input type="text" id="txt_secAnswer2" name="SecurityAnswer2" class="dropdown1" /><br />
+            <br />
+            <select id="sel_secQuestion3" name="SecurityQuestion3" class="textbox1">
+                <option value="0">Select Security Question</option>
+                @foreach (SecurityQuestion question in Model)
+                { 
+                    <option value="@question.Id">@question.Question</option>
+                }
+            </select><br />
+            <input type="text" id="txt_secAnswer3" name="SecurityAnswer3" class="dropdown1" /><br />
+            <br />
+            <div class="blueTransBack1">
+                <input type="submit" value="SAVE" class="button1" />
+            </div>
+
+            <input type="hidden" name="Token" value="@Request.QueryString["token"].ToString()" />
+        </form>
+    }
+</div>

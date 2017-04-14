@@ -1,0 +1,66 @@
+﻿@using Nansbook
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "ForgotUser";
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/scripts/forgotuser.js"></script>
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <form id="frmforgot" action="~/account/ForgotUser" method="post">
+        <br />
+        <br />
+        <img src="~/images/logo1.jpg" class="logo1 center-block" />
+        <h4 class="text-center">
+            Forgot your username?<br />
+            @Html.Raw(TempData["msg"])
+        </h4>
+        <br />
+        <br />
+        <br />
+        @if(ViewBag.Step == 1)
+        {
+            <div><input type="text" placeholder="First Name" class="textbox1" name="FirstName" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="Last Name" class="textbox1" name="LastName" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="Home Phone" class="textbox1" name="HomePhone" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="Mobile Phone" class="textbox1" name="MobilePhone" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="Social Security" class="textbox1" name="SocialSecurity" /></div>
+            <br />
+            <br />
+            <div class="blueTransBack1">
+                <input type="submit" value="GET MY SECURITY QUESTIONS" class="button1" />
+            </div>
+        }
+        else if(ViewBag.Step == 2)
+        {
+            List<SecurityQuestion> questions = (List<SecurityQuestion>)ViewBag.Questions;
+            
+            <div><input type="text" placeholder="@questions[0].Question" class="textbox1" name="SecurityAnswer1" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="@questions[1].Question" class="textbox1" name="SecurityAnswer2" /></div>
+            <br />
+            <br />
+            <div><input type="text" placeholder="@questions[2].Question" class="textbox1" name="SecurityAnswer3" /></div>
+            <br />
+            <br />
+            <div class="blueTransBack1">
+                <input type="submit" value="GET MY USERNAME" class="button1" />
+            </div>
+        }
+
+        <input type="hidden" name="Step" value="@ViewBag.Step" />
+        <input type="hidden" name="UserId" value="@ViewBag.UserId" />
+    </form>
+</div>

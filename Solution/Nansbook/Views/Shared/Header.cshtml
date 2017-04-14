@@ -1,0 +1,97 @@
+﻿@using Nansbook
+@using Nansbook.Models
+@{
+    string photo = string.Empty;
+    
+    if(Session["User"] != null)
+    {
+        photo = ((UserProfile) Session["User"]).PhotoFileName;
+    }
+
+    UserXStore currUserStore = Nansbook.Helpers.UserProvider.GetCurrentUserStore();
+    string storeName = currUserStore != null ? currUserStore.Store.Name : string.Empty;
+}
+
+<div class="navbar navbar-default navbar-static-top nopad nomargin" style="background-color:transparent;">
+    <div class="container-fluid nopad nomargin">
+        <a href="~/home/" class="navbar-brand"><img src="~/images/logo1.jpg" style="height:50px;" /></a>
+        <div class="pull-right" style="padding:7px 15px 0px 0px;">
+            <span data-toggle="modal" data-target="#modal_menu_list_store" class="btn btn-sm label1" id="spanStore">@storeName</span>
+            <span data-toggle="modal" data-target="#modal_menu_list_notifications" class="glyphicon glyphicon-bell btn btn-sm topMenuGlyph"></span>
+            <span data-toggle="modal" data-target="#modal_menu_list_settings" class="glyphicon glyphicon-th btn btn-sm topMenuGlyph"></span>
+            <span data-toggle="modal" data-target="#modal_menu_list_account" class="btn btn-sm"><img class="roundImg3" src="~/profilepics/@photo" style="margin:0px 4px 0px 4px;" /></span>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_menu_list_account" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body nopad nomargin">
+                <div class="list-group nopad nomargin">
+                    <span data-url="../account/viewprofile" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-user"></span> my account profile</span>
+                    <span data-url="../account/login?logout=1" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-log-out"></span> logout</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_menu_list_settings" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body nopad nomargin">
+                <div class="list-group nopad nomargin">
+                    <span data-url="../..//home/services/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> services</span>
+                    <span data-url="../../home/products/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> products</span>
+                    <span data-url="../../home/giftcards/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> gift cards</span>
+                    <span data-url="../../home/discounts/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> discounts</span>
+                    <span data-url="../../home/paymentmethods/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> payment methods</span>
+                    <span data-url="../../home/expensecategories/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> expense categories</span>
+                    <span data-url="../../home/commissionrates/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> commission rates</span>
+                    <span data-url="../../home/salaries/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> salaries</span>
+                    <span data-url="../../home/deductions/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> deductions</span>
+                    <span data-url="../../home/users/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> users</span>
+                    <span data-url="../../home/appsettings/" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-th-list"></span> app settings</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_menu_list_notifications" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body nopad nomargin">
+                <div class="list-group nopad nomargin">
+                    <span data-url="#" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-bell"></span> notification 1</span>
+                    <span data-url="#" class="list-group-item btn btn-sm"><span class="glyphicon glyphicon-bell"></span> notification 2</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal_menu_list_store" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad1">
+                <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>Switch Store Mode</h4>
+            </div>
+            <div class="modal-body nopad nomargin">
+                <div class="list-group nopad nomargin">
+                    @{
+                        if(Session["User"] != null)
+                        {
+                            foreach(UserXStore userStore in ((UserProfile)Session["User"]).UserXStores)
+                            {
+                                <span class="list-group-item btn btn-sm switchstore" data-storeid="@userStore.Store.Id">&nbsp;<input type="radio" name="rad_store" value="@userStore.Store.Id" @if(userStore.Current){<text>checked="checked"</text>} />&nbsp;<span class="glyphicon glyphicon-home"></span>&nbsp;@userStore.Store.Name</span>
+                            }
+                        }       
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

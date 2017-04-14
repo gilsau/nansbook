@@ -1,0 +1,106 @@
+﻿@using Nansbook.Models;
+@model IEnumerable<UserXStore>
+@{
+    ViewBag.Title = "Daily Salaries";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/scripts/salary.js"></script>
+}
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<div>&nbsp;</div>
+<div class="blue bold padLeft15">@Html.Raw(TempData["msg"])</div>
+<div>&nbsp;</div>
+<h4 class="text-center">These are daily guarantee salaries for each of your stores.</h4>
+<div>&nbsp;</div>
+<div class="container-fluid nomargin nopad">
+    <table class="table table-striped">
+        <tr>
+            <th>store</th>
+            <th>salary</th>
+            <th>expires</th>
+            <th>&nbsp;</th>
+        </tr>
+
+    @foreach(UserXStore userStore in Model)
+    {
+        var salary = userStore.Salaries.FirstOrDefault();
+        
+        if(salary != null)
+        {
+            <tr>
+                <td>@userStore.Store.Name</td>
+                <td>@string.Format("{0:C}", salary.Amount)</td>
+                <td>@string.Format("{0:d}", salary.ExpirationDate)</td>
+                <td class="text-center">
+                    <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                        data-id="@salary.Id" 
+                        data-amount="@salary.Amount"
+                        data-expdate="@salary.ExpirationDate"
+                        data-storename="@userStore.Store.Name"
+                        data-userstoreid="@userStore.Id"
+                        >
+                    </a>
+                    <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@salary.Id" data-name="@userStore.Store.Name" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+</div>
+
+<form id="frmManage" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_header">Add Salary for Store '<span id="modal_storename"></span>'</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <div class="margTop5 label1">Store <span class="red bold">(required)</span></div>
+                    <div><select id="selStore" name="UserXStoreId" class="form-control">
+                            <option value="0">select store</option>
+                            @foreach (UserXStore userStore in Model)
+                            { 
+                                <option value="@userStore.Id">@userStore.Store.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="margTop5 label1">Amount <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtAmount" name="Amount" class="form-control" /></div>
+                    <div class="margTop5 label1">Expiration Date</div>
+                    <div><input type="text" id="txtExpDate" name="ExpirationDate" class="form-control datepicker" /></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_add_modal">Add Salary</button>
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_update_modal">Update Salary</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidId" name="Id" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>About To Delete "<span class="del_name"></span>"</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span class="del_name"></span>"?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Yes</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

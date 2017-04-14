@@ -1,0 +1,291 @@
+﻿body {
+    padding: 0px;
+    margin: 0px;
+}
+
+.grad1
+{
+    background: -webkit-linear-gradient(left top, #fff, #6ACCCB); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(bottom right, #fff, #6ACCCB); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(bottom right, #fff, #6ACCCB); /* For Firefox 3.6 to 15 */
+    background: no-repeat linear-gradient(to bottom right, #fff, #6ACCCB); /* Standard syntax */
+}
+
+.logo1
+{
+    height: 200px;
+}
+
+a.navbar-brand
+{
+    padding: 0px !important;
+    margin: 0px !important;
+}
+
+.nopad
+{
+    padding: 0px;
+}
+
+.nomargin
+{
+    margin: 0px;
+}
+
+.margTop5
+{
+    margin-top: 5px;
+}
+
+#loginBoxContainer
+{
+    background-image: url(../images/bookkeeping.jpg);
+    height: 650px;
+    opacity: .1;
+}
+
+#loginBox
+{
+    position: relative;
+    top: -650px;
+}
+
+/*desktop*/
+@media only screen and (min-width: 768px)
+{
+    #loginBoxContainer
+    {
+        width: 33%;
+    }
+
+    #loginBox
+    {
+        width: 33%;
+    }
+
+    #profileMenuTop
+    {
+        display: normal;
+    }
+
+    #footer
+    {
+        display: none;
+    }
+
+    #mobileLogoutLnk
+    {
+        display: none;
+    }
+}
+/*mobile*/
+@media only screen and (max-width: 768px)
+{
+    #loginBoxContainer
+    {
+        width: 100%;
+    }
+
+    #loginBox
+    {
+        width: 100%;
+    }
+
+    #profileMenuTop
+    {
+        display: none;
+    }
+
+    #footer
+    {
+        display: normal;
+    }
+
+    #mobileLogoutLnk
+    {
+        display: normal;
+    }
+}
+
+.textbox1
+{
+    background-color: transparent;
+    font-size: 16px;
+    color: #535353;
+    text-align: center;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 1px #535353;
+    width: 100%;
+}
+
+::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+  color: #0c6769;
+}
+::-moz-placeholder { /* Firefox 19+ */
+  color: #0c6769;
+}
+:-ms-input-placeholder { /* IE 10+ */
+  color: #0c6769;
+}
+:-moz-placeholder { /* Firefox 18- */
+  color: #0c6769;
+}
+
+.button1
+{
+    background-color: transparent;
+    font-size: 22px;
+    text-align: center;
+    color: #fff;
+    border: none;
+}
+
+.blueTransBack1
+{
+    background-color: #1310e8;
+    opacity: .5;
+    padding: 20px;
+}
+
+a.link1, a.link1:active, a.link1:visited
+{
+    font-size: 20px;
+    color: #0c6769;
+}
+
+.red
+{
+    color: red;
+}
+
+.blue
+{
+    color: blue;
+}
+
+.white
+{
+    color: #fff;
+}
+
+.bold
+{
+    font-weight: bold;
+}
+
+.footer-icon
+{
+    font-size: 20px;
+    color: #fff;
+}
+
+.footer-btn-back1
+{
+    background-color: #6ACCCB;
+}
+
+.round {
+  -webkit-border-top-left-radius: 1px;
+  -webkit-border-top-right-radius: 2px;
+  -webkit-border-bottom-right-radius: 3px;
+  -webkit-border-bottom-left-radius: 4px;
+
+  -moz-border-radius-topleft: 1px;
+  -moz-border-radius-topright: 2px;
+  -moz-border-radius-bottomright: 3px;
+  -moz-border-radius-bottomleft: 4px;
+
+  border-top-left-radius: 1px;
+  border-top-right-radius: 2px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 4px;
+}
+
+.roundImg1
+{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+}
+
+.roundImg2
+{
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+}
+
+.whiteCircle1
+{
+    border-radius: 50%;
+    background-color: white;
+    width: 200px;
+    height: 200px;
+}
+
+.greenCircle1
+{
+    border-radius: 50%;
+    background-color: #6ACCCB;
+    width: 60px;
+    height: 60px;
+}
+
+.whiteback1
+{
+    background-color: #fff;
+}
+
+.title1
+{
+    font-size: 28px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.question-link
+{
+    font-size: 25px;
+    color: #0c6769;
+    position:relative;
+    top: -40px;
+    left: 10px;
+}
+
+.dropdown1
+{
+    font-size: 16px;
+    color: #535353;
+    text-align: center;
+    width: 100%;
+}
+
+.label1
+{
+    min-width: 150px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.photoSmall
+{
+    height: 50px;
+}
+
+.indent-15
+{
+    text-indent: 15px;
+}
+
+.btn-primary
+{
+    border: none;
+    background-color: #6ACCCB;
+}
+
+#ui-datepicker-div
+{
+    z-index: 99;
+}

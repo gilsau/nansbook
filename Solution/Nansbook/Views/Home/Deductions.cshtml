@@ -1,0 +1,167 @@
+﻿@using Nansbook.Models;
+@model IEnumerable<UserXStore>
+@{
+    ViewBag.Title = "Deductions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <script src="~/scripts/deductions.js"></script>
+}
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<div>&nbsp;</div>
+<div class="blue bold padLeft15">@Html.Raw(TempData["msg"])</div>
+<div>&nbsp;</div>
+<h4 class="text-center">These are deductions taken from your paycheck for each of your stores.</h4>
+<div>&nbsp;</div>
+<div class="container-fluid nomargin nopad">
+    <table class="table table-striped">
+        <tr>
+            <th>STORE</th>
+            <th>DEDUCTIONS</th>
+            <th>&nbsp;</th>
+        </tr>
+
+    @foreach(UserXStore userStore in Model)
+    {
+        var deduct = userStore.Deductions.FirstOrDefault();
+        
+        if(deduct != null)
+        {
+            System.Text.StringBuilder sbDeducts = new System.Text.StringBuilder();
+
+            //main deductions, choose 1 of 4 options
+            if (deduct.FixedAmtPerSvcSale.HasValue) {
+                sbDeducts.Append(string.Format("<b>Per Sale:</b> {0:C}", deduct.FixedAmtPerSvcSale));
+            }
+            else if (deduct.PctPerSvcSale.HasValue)
+            {
+                sbDeducts.Append(string.Format("<b>Per Sale:</b> {0}%", deduct.PctPerSvcSale));
+            }
+            else if (deduct.PctTotAllSvcSales.HasValue)
+            {
+                sbDeducts.Append(string.Format("<b>Total Sales:</b> {0}%", deduct.PctTotAllSvcSales));
+            }
+            else if (deduct.DailyAmt.HasValue)
+            {
+                sbDeducts.Append(string.Format("<b>Daily Amount:</b> {0:C}", deduct.DailyAmt));
+            }
+            
+            //daily cleaning expense
+            if (deduct.DailyCleaningExp.HasValue) {
+                sbDeducts.Append(string.Format("<br/><b>Daily Cleaning({0}):</b> {1:C}", Nansbook.Helpers.Render.GetDayOfWeek(deduct.DailyCleaningExpWkday), deduct.DailyCleaningExp));
+            }
+            
+            //tip deduction
+            if (deduct.TipProcessingPct.HasValue) {
+                sbDeducts.Append(string.Format("<br/><b>Tip Deduction:</b> {0}%", deduct.TipProcessingPct));
+            }
+            
+            
+            <tr>
+                <td>@userStore.Store.Name</td>
+                <td>@Html.Raw(sbDeducts.ToString())</td>
+                <td class="text-center">
+                    <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                        data-id="@deduct.Id" 
+                        data-fixedamtpersvcsale="@deduct.FixedAmtPerSvcSale"
+	                    data-pctpersvcsale="@deduct.PctPerSvcSale"
+	                    data-pcttotallsvcsales="@deduct.PctTotAllSvcSales"
+	                    data-dailyamt="@deduct.DailyAmt"
+	                    data-dailycleaningexp="@deduct.DailyCleaningExp"
+	                    data-dailycleaningexpwkday="@deduct.DailyCleaningExpWkday"
+	                    data-tipprocessingpct="@deduct.TipProcessingPct"
+	                    data-storename="@userStore.Store.Name"
+                        data-userstoreid="@userStore.Id"
+                        >
+                    </a>
+                    <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@deduct.Id" data-name="@userStore.Store.Name" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+                </td>
+            </tr>
+        }
+    }
+</table>
+</div>
+
+<form id="frmManage" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_header">Add Deductions for Store <span id="modal_storename"></span></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <div class="margTop5 label1">Store <span class="red bold">(required)</span></div>
+                    <div><select id="selStore" name="UserXStoreId" class="form-control">
+                            <option value="0">select store</option>
+                            @foreach (UserXStore userStore in Model)
+                            { 
+                                <option value="@userStore.Id">@userStore.Store.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div>&nbsp;</div>
+                    <div class="margTop5 label1">Service Sales Deduction <span class="red bold">(required)</span></div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="red bold">choose one</div>
+                            <div><input type="radio" name="rad_svcsale" value="1" id="rad1" />&nbsp;<input type="text" id="txtFixedAmtPerSvcSale" name="FixedAmtPerSvcSale" class="txt50" data-rad="#rad1" />&nbsp;$$$ Per Service Sale</div>
+                            <div><input type="radio" name="rad_svcsale" value="2" id="rad2" />&nbsp;<input type="text" id="txtPctPerSvcSale" name="PctPerSvcSale" class="txt50" data-rad="#rad2" />&nbsp;% Per Service Sale</div>
+                            <div><input type="radio" name="rad_svcsale" value="3" id="rad3" />&nbsp;<input type="text" id="txtPctTotAllSvcSales" name="PctTotAllSvcSales" class="txt50" data-rad="#rad3" />&nbsp;% of All Service Sales</div>
+                            <div><input type="radio" name="rad_svcsale" value="4" id="rad4" />&nbsp;<input type="text" id="txtDailyAmt" name="DailyAmt" class="txt50" data-rad="#rad4" />&nbsp;$$$ Daily Amount</div>
+                        </div>
+                    </div>
+                    <div class="margTop5 label1">Daily Cleaning Deduction <span class="blue bold">(optional)</span></div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div><input type="text" id="txtDailyCleaningExp" name="DailyCleaningExp" style="width:50px;" />&nbsp;$$$ Per Day</div>
+                            <div>&nbsp;</div>
+                            <div>Day of Week for Cleaning Deduction</div>
+                            <div>
+                                <input type="radio" name="DailyCleaningExpWkDay" value="0" />Sun&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="1" />Mon&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="2" />Tue&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="3" />Wed&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="4" />Thu&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="5" />Fri&nbsp;
+                                <input type="radio" name="DailyCleaningExpWkDay" value="6" />Sat
+                            </div>
+                        </div>
+                    </div>
+                    <div class="margTop5 label1">Tip Deduction <span class="blue bold">(optional)</span></div>
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div><input type="text" id="txtTipProcessingPct" name="TipProcessingPct" style="width:50px;" />&nbsp;% Per Credit Card Tip</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_add_modal">Add Deductions</button>
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_update_modal">Update Deductions</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidId" name="Id" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>About To Delete "<span class="del_name"></span>"</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span class="del_name"></span>"?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Yes</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

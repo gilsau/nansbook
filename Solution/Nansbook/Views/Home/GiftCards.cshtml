@@ -1,0 +1,84 @@
+﻿@using Nansbook.Models;
+@model IEnumerable<GiftCard>
+@{
+    ViewBag.Title = "Gift Cards";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="~/scripts/giftcards.js"></script>
+}
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<p>&nbsp;</p>
+<div class="blue bold padLeft15">@Html.Raw(TempData["msg"])</div>
+<p>&nbsp;</p>
+<div class="container-fluid">
+    <table class="table table-striped">
+    @foreach(GiftCard card in Model)
+    {
+        <tr>
+            <td>@card.Name (@string.Format("{0:C}", card.CreditAmount))</td>
+            <td>Expires: @string.Format("{0:d}", card.ExpirationDate)</td>
+            <td class="text-center">
+                <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                    data-id="@card.Id" 
+                    data-name="@card.Name" 
+                    data-creditamt="@card.CreditAmount"
+                    data-expdate="@card.ExpirationDate"
+                    data-storeid="@card.UserXStore.Store.Id"
+                    >
+                </a>
+                <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@card.Id" data-name="@card.Name" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+</div>
+
+<form id="frmManage" method="post">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_header">Add GiftCard</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <div class="margTop5 label1">Name <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtName" name="Name" class="form-control" /></div>
+                    <div class="margTop5 label1">Credit Amount <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtCreditAmt" name="CreditAmount" class="form-control" /></div>
+                    <div class="margTop5 label1">Expiration Date <span class="red bold">(required)</span></div>
+                    <div><input type="text" id="txtExpDate" name="ExpirationDate" class="form-control datepicker" /></div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_add_modal">Add GiftCard</button>
+                    <button class="btn btn-sm btn-primary manageBtn" id="btn_update_modal">Update GiftCard</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" id="hidId" name="Id" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>About To Delete "<span class="del_name"></span>"</h4>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete "<span class="del_name"></span>"?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Yes</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

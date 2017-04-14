@@ -1,0 +1,38 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+    ViewBag.Title = "Login";
+}
+
+@section scripts{
+    <script type="text/javascript" src="~/scripts/login.js"></script>
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <form id="frmLogin" action="~/account/login" method="post">
+    <br />
+    <br />
+    <img src="~/images/logo1.jpg" class="logo1 center-block" />
+    <h4 class="text-center">Best Bookkeeping App On The Net</h4>
+    <br />
+    <br />
+    <br />
+    <input type="text" placeholder="email" class="textbox1" name="UserName" />
+    <br />
+    <br />
+    <br />
+    <input type="password" placeholder="password" class="textbox1" name="Password" />
+    <br />
+    <br />
+    <br />
+    <br />
+    <div class="blueTransBack1">
+        <input type="submit" value="SIGN IN" class="button1" />
+    </div>
+    <br />
+    <br />
+    <div>
+        <a href="~/account/signup" class="link1">Don't have an account? SIGN UP</a>
+    </div>
+    </form>
+</div>

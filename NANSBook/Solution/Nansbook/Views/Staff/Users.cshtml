@@ -1,0 +1,161 @@
+﻿@using Nansbook;
+@model List<UserProfile>
+@{
+    ViewBag.Title = "Manage Users";
+    string pgTopic = "USER";
+}
+
+@section scripts{
+    <script src="~/scripts/users.js"></script>
+}
+
+<div class="red bold">@Html.Raw(TempData["msg"])</div>
+
+<a id="btn_add" href="#modal_manage" data-toggle="modal" class="greenCircle1 text-center center-block"><span style="font-size:40px;color:#fff;">+</span></a>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+
+<a id="delSelected" href="#modal_del_confirm" data-toggle="modal" class="btn btn-sm btn-primary"><span class="glyphicon glyphicon-remove"></span>&nbsp;Selected</a>
+<table class="table table-striped">
+    <tr>
+        <th class="text-center"><input type="checkbox" id="chkAll" /></th>
+        <th>Name</th>
+        <th>Role</th>
+        <th class="text-center">Actions</th>
+    </tr>
+    @foreach(UserProfile user in Model)
+    {
+        <tr>
+            <td class="text-center"><input type="checkbox" id="chkRow" name="chkRow" data-id="@user.UserId" /></td>
+            <td><a href="~/account/viewprofile?id=@user.UserId"><img src="~/profilepics/@user.PhotoFileName" class="roundImg1" /> @string.Format("{0} {1} {2} ({3})", user.FirstName, user.MiddleName, user.LastName, user.UserName)</a></td>
+            <td><a href="~/staff/roles">@string.Join(",", user.webpages_Roles.Select(r => r.RoleName).ToArray())</a></td>
+            <td class="text-center">
+                <a href="#modal_manage" data-toggle="modal" class="edit_row glyphicon glyphicon-pencil" title="edit details" 
+                    data-id="@user.UserId" 
+                    data-username="@user.UserName" 
+                    data-firstname="@user.FirstName" 
+                    data-middlename="@user.MiddleName" 
+                    data-lastname="@user.LastName" 
+                    data-nickname="@user.NickName" 
+                    data-address1="@user.Address1" 
+                    data-address2="@user.Address2" 
+                    data-city="@user.City" 
+                    data-state="@user.State" 
+                    data-homephone="@user.HomePhone" 
+                    data-mobilephone="@user.MobilePhone" 
+                    data-socialsecurity="@user.SocialSecurity" 
+                    data-photo="@user.PhotoFileName"
+                    data-role="@user.webpages_Roles.ElementAt(0).RoleName">
+                </a>
+                <a href="#modal_del_confirm" data-toggle="modal" class="rem_row btn btn-sm" data-id="@user.UserId" title="remove"><span class="glyphicon glyphicon-remove"></span></a>
+            </td>
+        </tr>
+    }
+</table>
+
+<form id="frmManage" action="~/staff/add" method="post" enctype="multipart/form-data">
+    <div class="modal fade" id="modal_manage" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header grad1">
+                    <a href="#" id="closeFPwd" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                    <h4 id="title_add">ADD @pgTopic</h4>
+                </div>
+                <div class="modal-body">
+                    <div id="errMsg" class="red bold"></div>
+                    <span class="red bold">* Required</span>
+                    <div class="input-group">
+                        <span class="input-group-addon grad1 label1">Username (Email) <span class="red bold">*</span></span>
+                        <input type="text" id="txt_username" name="UserName" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">First Name <span class="red bold">*</span></span>
+                        <input type="text" id="txt_firstname" name="FirstName" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Middle Name</span>
+                        <input type="text" id="txt_middlename" name="MiddleName" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Last Name <span class="red bold">*</span></span>
+                        <input type="text" id="txt_lastname" name="LastName" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Nickname</span>
+                        <input type="text" id="txt_nickname" name="NickName" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Address</span>
+                        <input type="text" id="txt_address1" name="Address" class="form-control" />
+                        <input type="text" id="txt_address2" name="Address2" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">City</span>
+                        <input type="text" id="txt_city" name="City" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">State <span class="red bold">*</span></span>
+                        <select id="sel_state" name="StateId" class="form-control">
+                            <option value="0">Select State</option>
+                            @foreach (State state in ViewBag.States)
+                            {
+                                <option value="@state.Id">@state.Name</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Home Phone</span>
+                        <input type="text" id="txt_homephone" name="HomePhone" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Mobile Phone</span>
+                        <input type="text" id="txt_mobilephone" name="MobilePhone" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Social Security</span>
+                        <input type="text" id="txt_socialsec" name="SocialSecurity" class="form-control" />
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1">Role <span class="red bold">*</span></span>
+                        <select id="sel_role" name="Role" class="form-control">
+                            <option value="0">Select Role</option>
+                            @foreach (webpages_Roles role in ViewBag.Roles)
+                            {
+                                <option value="@role.RoleName">@role.RoleName</option>
+                            }
+                        </select>
+                    </div>
+                    <div class="input-group margTop5">
+                        <span class="input-group-addon grad1 label1"><img id="img_photo" src="~/profilepics/default.jpg" class="photoSmall" />  Photo</span>
+                        <input type="file" id="file_photo" name="PhotoFileName" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <span class="btn btn-sm btn-primary" id="btn_add_modal">ADD @pgTopic</span>
+                    <span class="btn btn-sm btn-primary" id="btn_update_modal">UPDATE @pgTopic</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <input type="hidden" id="hid_id" name="Id" />
+    <input type="hidden" id="hid_del" name="IdsForDelete" />
+</form>
+
+<div class="modal fade" id="modal_del_confirm" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header grad2">
+                <a href="#" class="btn btn-default pull-right" data-dismiss="modal">X</a>
+                <h4>Delete Records Selected</h4>
+            </div>
+            <div class="modal-body">
+                The record(s) selected will be permanently deleted and cannot be recovered. Are you sure you want to proceed?
+            </div>
+            <div class="modal-footer">
+                <span class="btn btn-sm btn-primary" id="del_confirm_proceed">Proceed</span>
+                <span class="btn btn-sm btn-primary" data-dismiss="modal">Cancel</span>
+            </div>
+        </div>
+    </div>
+</div>

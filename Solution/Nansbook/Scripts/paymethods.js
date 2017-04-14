@@ -1,0 +1,88 @@
+﻿$(document).ready(function () {
+
+    //add btn, before modal opens, reset fields in modal
+    $('#btn_add').click(function () {
+        //$('#frmManage input[type="text"]').val('');
+        //$('#frmManage select').val('0');
+        $('#frmManage').trigger("reset");
+
+        $('#title_header').text('Add ' + $('#title_header').text().replace($('#title_header').text().split(' ')[0], ''));
+        $('#btn_update_modal').hide();
+        $('#btn_add_modal').show();
+        $('#frmManage').attr('action', '../../paymentmethod/add');
+
+        console.log('action: ' + $('#frmManage').attr('action'));
+    });
+
+    //edit btn, before modal opens, fill info in modal
+    $('.edit_row').click(function () {
+        var btn = $(this);
+
+        //fill data in fields
+        $('#hidId').val($(this).attr('data-id'));
+        $('#txtName').val(btn.attr('data-name'));
+        
+        $('#title_header').text('Update ' + $('#title_header').text().replace($('#title_header').text().split(' ')[0], ''));
+        $('#btn_update_modal').show();
+        $('#btn_add_modal').hide();
+        $('#frmManage').attr('action', '../../paymentmethod/update');
+    });
+
+    //add/update button in modal
+    $('.manageBtn').click(function (e) {
+        var errMsg = $('#errMsg');
+        var validated = true;
+        var oName = $('#txtName');
+        
+        //validate inputs
+        if ($.trim(oName.val()) === '') {
+            validated = false;
+            errMsg.text('Name is required.');
+            oName.select();
+        }
+        
+        if (validated) {
+
+            //loading sign
+            ShowLoading();
+
+            //wait, then submit form
+            setTimeout(function () {
+                $('#frmManage').submit();
+            }, 1000);
+        }
+
+        e.preventDefault();
+        return false;
+
+    });
+
+    //delete btn, before modal opens, prepare vars for deletion
+    $('.rem_row').click(function () {
+
+        //get id to delete
+        $('#hidId').val($(this).attr('data-id'));
+
+        //set form action
+        $('#frmManage').attr('action', '../../paymentmethod/delete');
+
+        //set title for modal
+        $('.del_name').text($(this).attr('data-name'));
+    });
+
+    //proceed btn in modal, confirm delete and submit form
+    $('#del_confirm_proceed').click(function () {
+
+        ShowLoading();
+
+        //wait, then submit form
+        setTimeout(function () {
+            $('#frmManage').submit();
+        }, 1000);
+    });
+
+    //modal is open
+    $('#modal_manage').on('shown.bs.modal', function () {
+        $('#txtName').focus();
+    });
+});

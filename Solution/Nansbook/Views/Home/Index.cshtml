@@ -1,0 +1,25 @@
+﻿@using Nansbook.Models;
+@{
+    ViewBag.Title = "";
+    
+    UserProfile currUser = Session["User"] != null ? (UserProfile)Session["User"] : new UserProfile();
+}
+
+<div id="loginBoxContainer" class="center-block"></div>
+<div id="loginBox" class="center-block text-center">
+    <h3>Welcome @currUser.FirstName !</h3>
+    Use the Bottom-Screen Buttons & Top-Right Menu to navigate app.<br />
+    <br />
+    <div class="center-block whiteCircle1">
+        <br />
+        @string.Format("{0:MMMM}", DateTime.Now)
+        <br />
+        <br />
+        <div style="font-size:50px;">@string.Format("{0:dd}", DateTime.Now)</div>
+        <br />
+        @string.Format("{0:dddd}", DateTime.Now).ToUpper()
+    </div>
+    <br />
+    <br />
+    <br />
+</div>

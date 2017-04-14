@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="NansbookModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="NansbookEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="AppSettings" EntityType="NansbookModel.AppSetting" />
+    <EntitySet Name="CommissionRates" EntityType="NansbookModel.CommissionRate" />
+    <EntitySet Name="Deductions" EntityType="NansbookModel.Deduction" />
+    <EntitySet Name="Discounts" EntityType="NansbookModel.Discount" />
+    <EntitySet Name="Expenses" EntityType="NansbookModel.Expense" />
+    <EntitySet Name="ExpenseCategories" EntityType="NansbookModel.ExpenseCategory" />
+    <EntitySet Name="GiftCards" EntityType="NansbookModel.GiftCard" />
+    <EntitySet Name="Notifications" EntityType="NansbookModel.Notification" />
+    <EntitySet Name="Paychecks" EntityType="NansbookModel.Paycheck" />
+    <EntitySet Name="PaymentMethods" EntityType="NansbookModel.PaymentMethod" />
+    <EntitySet Name="Products" EntityType="NansbookModel.Product" />
+    <EntitySet Name="Salaries" EntityType="NansbookModel.Salary" />
+    <EntitySet Name="Sales" EntityType="NansbookModel.Sale" />
+    <EntitySet Name="SecurityQuestions" EntityType="NansbookModel.SecurityQuestion" />
+    <EntitySet Name="Services" EntityType="NansbookModel.Service" />
+    <EntitySet Name="States" EntityType="NansbookModel.State" />
+    <EntitySet Name="Stores" EntityType="NansbookModel.Store" />
+    <EntitySet Name="UserProfiles" EntityType="NansbookModel.UserProfile" />
+    <EntitySet Name="UserXStores" EntityType="NansbookModel.UserXStore" />
+    <EntitySet Name="webpages_Membership" EntityType="NansbookModel.webpages_Membership" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="NansbookModel.webpages_OAuthMembership" />
+    <EntitySet Name="webpages_Roles" EntityType="NansbookModel.webpages_Roles" />
+    <AssociationSet Name="fk_AppSetting_UserXStore" Association="NansbookModel.fk_AppSetting_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="AppSetting" EntitySet="AppSettings" />
+    </AssociationSet>
+    <AssociationSet Name="fk_CommissionRate_UserXStore" Association="NansbookModel.fk_CommissionRate_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="CommissionRate" EntitySet="CommissionRates" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Deduction_ExpenseCategory" Association="NansbookModel.fk_Deduction_ExpenseCategory">
+      <End Role="ExpenseCategory" EntitySet="ExpenseCategories" />
+      <End Role="Deduction" EntitySet="Deductions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Deduction_UserXStore" Association="NansbookModel.fk_Deduction_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Deduction" EntitySet="Deductions" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Discount_Product" Association="NansbookModel.fk_Discount_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Discount" EntitySet="Discounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Discount_Service" Association="NansbookModel.fk_Discount_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Discount" EntitySet="Discounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Discount_UserXStore" Association="NansbookModel.fk_Discount_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Discount" EntitySet="Discounts" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Expense_Product" Association="NansbookModel.fk_Expense_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Expense_Service" Association="NansbookModel.fk_Expense_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Expense_UserXStore" Association="NansbookModel.fk_Expense_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Expense" EntitySet="Expenses" />
+    </AssociationSet>
+    <AssociationSet Name="fk_ExpenseCategory_UserXStore" Association="NansbookModel.fk_ExpenseCategory_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="ExpenseCategory" EntitySet="ExpenseCategories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Parent_ExpenseCategory" Association="NansbookModel.fk_Parent_ExpenseCategory">
+      <End Role="ExpenseCategory" EntitySet="ExpenseCategories" />
+      <End Role="ExpenseCategory1" EntitySet="ExpenseCategories" />
+    </AssociationSet>
+    <AssociationSet Name="fk_GiftCard_UserXStore" Association="NansbookModel.fk_GiftCard_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="GiftCard" EntitySet="GiftCards" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Notification_UserXStore" Association="NansbookModel.fk_Notification_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Notification" EntitySet="Notifications" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Paycheck_UserXStore" Association="NansbookModel.fk_Paycheck_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Paycheck" EntitySet="Paychecks" />
+    </AssociationSet>
+    <AssociationSet Name="fk_PaymentMethod_UserXStore" Association="NansbookModel.fk_PaymentMethod_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="PaymentMethod" EntitySet="PaymentMethods" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Product_UserXStore" Association="NansbookModel.fk_Product_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_Product" Association="NansbookModel.fk_Sale_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Salary_UserXStore" Association="NansbookModel.fk_Salary_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Salary" EntitySet="Salaries" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_Service" Association="NansbookModel.fk_Sale_Service">
+      <End Role="Service" EntitySet="Services" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Sale_UserXStore" Association="NansbookModel.fk_Sale_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Sale" EntitySet="Sales" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion1" Association="NansbookModel.fk_UserProfile_SecurityQuestion1">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion2" Association="NansbookModel.fk_UserProfile_SecurityQuestion2">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_SecurityQuestion3" Association="NansbookModel.fk_UserProfile_SecurityQuestion3">
+      <End Role="SecurityQuestion" EntitySet="SecurityQuestions" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_Service_UserXStore" Association="NansbookModel.fk_Service_UserXStore">
+      <End Role="UserXStore" EntitySet="UserXStores" />
+      <End Role="Service" EntitySet="Services" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserProfile_State" Association="NansbookModel.fk_UserProfile_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserXStore_Store" Association="NansbookModel.fk_UserXStore_Store">
+      <End Role="Store" EntitySet="Stores" />
+      <End Role="UserXStore" EntitySet="UserXStores" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserXStore_UserProfile" Association="NansbookModel.fk_UserXStore_UserProfile">
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+      <End Role="UserXStore" EntitySet="UserXStores" />
+    </AssociationSet>
+    <AssociationSet Name="webpages_UsersInRoles" Association="NansbookModel.webpages_UsersInRoles">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="UserProfile" EntitySet="UserProfiles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="AppSetting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="NotifyByEmailForInvites" Type="Boolean" Nullable="false" />
+    <Property Name="NotifyByEmailForPaychecks" Type="Boolean" Nullable="false" />
+    <Property Name="NotifyInAppForInvites" Type="Boolean" Nullable="false" />
+    <Property Name="NotifyInAppForPaychecks" Type="Boolean" Nullable="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_AppSetting_UserXStore" FromRole="AppSetting" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="CommissionRate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Calculation" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Percentage" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_CommissionRate_UserXStore" FromRole="CommissionRate" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Deduction">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="ExpenseCategoryId" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Calculation" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Percentage" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="ExpenseCategory" Relationship="NansbookModel.fk_Deduction_ExpenseCategory" FromRole="Deduction" ToRole="ExpenseCategory" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Deduction_UserXStore" FromRole="Deduction" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Discount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Percentage" Type="Int32" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ServiceId" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="NansbookModel.fk_Discount_Product" FromRole="Discount" ToRole="Product" />
+    <NavigationProperty Name="Service" Relationship="NansbookModel.fk_Discount_Service" FromRole="Discount" ToRole="Service" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Discount_UserXStore" FromRole="Discount" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Expense">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ServiceId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="NansbookModel.fk_Expense_Product" FromRole="Expense" ToRole="Product" />
+    <NavigationProperty Name="Service" Relationship="NansbookModel.fk_Expense_Service" FromRole="Expense" ToRole="Service" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Expense_UserXStore" FromRole="Expense" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="ExpenseCategory">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Deductions" Relationship="NansbookModel.fk_Deduction_ExpenseCategory" FromRole="ExpenseCategory" ToRole="Deduction" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_ExpenseCategory_UserXStore" FromRole="ExpenseCategory" ToRole="UserXStore" />
+    <NavigationProperty Name="ExpenseCategory1" Relationship="NansbookModel.fk_Parent_ExpenseCategory" FromRole="ExpenseCategory" ToRole="ExpenseCategory1" />
+    <NavigationProperty Name="ExpenseCategory2" Relationship="NansbookModel.fk_Parent_ExpenseCategory" FromRole="ExpenseCategory1" ToRole="ExpenseCategory" />
+  </EntityType>
+  <EntityType Name="GiftCard">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreditAmount" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ExpirationDate" Type="DateTime" Precision="3" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_GiftCard_UserXStore" FromRole="GiftCard" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Notification">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Link" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Notification_UserXStore" FromRole="Notification" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Paycheck">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Paycheck_UserXStore" FromRole="Paycheck" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="PaymentMethod">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_PaymentMethod_UserXStore" FromRole="PaymentMethod" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Discounts" Relationship="NansbookModel.fk_Discount_Product" FromRole="Product" ToRole="Discount" />
+    <NavigationProperty Name="Expenses" Relationship="NansbookModel.fk_Expense_Product" FromRole="Product" ToRole="Expense" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Product_UserXStore" FromRole="Product" ToRole="UserXStore" />
+    <NavigationProperty Name="Sales" Relationship="NansbookModel.fk_Sale_Product" FromRole="Product" ToRole="Sale" />
+  </EntityType>
+  <EntityType Name="Salary">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Calculation" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="Amount" Type="Int32" />
+    <Property Name="Percentage" Type="Int32" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Salary_UserXStore" FromRole="Salary" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="Sale">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ServiceId" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Nullable="false" Precision="19" Scale="4" />
+    <Property Name="Tip" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Comments" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Product" Relationship="NansbookModel.fk_Sale_Product" FromRole="Sale" ToRole="Product" />
+    <NavigationProperty Name="Service" Relationship="NansbookModel.fk_Sale_Service" FromRole="Sale" ToRole="Service" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Sale_UserXStore" FromRole="Sale" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="SecurityQuestion">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion1" FromRole="SecurityQuestion" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles1" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion2" FromRole="SecurityQuestion" ToRole="UserProfile" />
+    <NavigationProperty Name="UserProfiles2" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion3" FromRole="SecurityQuestion" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserXStoreId" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="Discounts" Relationship="NansbookModel.fk_Discount_Service" FromRole="Service" ToRole="Discount" />
+    <NavigationProperty Name="Expenses" Relationship="NansbookModel.fk_Expense_Service" FromRole="Service" ToRole="Expense" />
+    <NavigationProperty Name="Sales" Relationship="NansbookModel.fk_Sale_Service" FromRole="Service" ToRole="Sale" />
+    <NavigationProperty Name="UserXStore" Relationship="NansbookModel.fk_Service_UserXStore" FromRole="Service" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Abbrev" Type="String" Nullable="false" MaxLength="5" Unicode="true" FixedLength="false" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.fk_UserProfile_State" FromRole="State" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="Store">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+    <Property Name="CreatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="UpdatedBy" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="UpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="UserXStores" Relationship="NansbookModel.fk_UserXStore_Store" FromRole="Store" ToRole="UserXStore" />
+  </EntityType>
+  <EntityType Name="UserProfile">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="56" Unicode="true" FixedLength="false" />
+    <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="MiddleName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="LastName" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="NickName" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="Address2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="City" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="HomePhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="MobilePhone" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="PhotoFileName" Type="String" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="SocialSecurity" Type="String" MaxLength="15" Unicode="true" FixedLength="false" />
+    <Property Name="SecQuestion1" Type="Int32" />
+    <Property Name="SecQuestion2" Type="Int32" />
+    <Property Name="SecQuestion3" Type="Int32" />
+    <Property Name="SecAnswer1" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="SecAnswer2" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="SecAnswer3" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="SecurityQuestion" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion1" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="SecurityQuestion1" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion2" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="SecurityQuestion2" Relationship="NansbookModel.fk_UserProfile_SecurityQuestion3" FromRole="UserProfile" ToRole="SecurityQuestion" />
+    <NavigationProperty Name="State1" Relationship="NansbookModel.fk_UserProfile_State" FromRole="UserProfile" ToRole="State" />
+    <NavigationProperty Name="UserXStores" Relationship="NansbookModel.fk_UserXStore_UserProfile" FromRole="UserProfile" ToRole="UserXStore" />
+    <NavigationProperty Name="webpages_Roles" Relationship="NansbookModel.webpages_UsersInRoles" FromRole="UserProfile" ToRole="webpages_Roles" />
+  </EntityType>
+  <EntityType Name="UserXStore">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="StoreId" Type="Int32" />
+    <NavigationProperty Name="AppSettings" Relationship="NansbookModel.fk_AppSetting_UserXStore" FromRole="UserXStore" ToRole="AppSetting" />
+    <NavigationProperty Name="CommissionRates" Relationship="NansbookModel.fk_CommissionRate_UserXStore" FromRole="UserXStore" ToRole="CommissionRate" />
+    <NavigationProperty Name="Deductions" Relationship="NansbookModel.fk_Deduction_UserXStore" FromRole="UserXStore" ToRole="Deduction" />
+    <NavigationProperty Name="Discounts" Relationship="NansbookModel.fk_Discount_UserXStore" FromRole="UserXStore" ToRole="Discount" />
+    <NavigationProperty Name="Expenses" Relationship="NansbookModel.fk_Expense_UserXStore" FromRole="UserXStore" ToRole="Expense" />
+    <NavigationProperty Name="ExpenseCategories" Relationship="NansbookModel.fk_ExpenseCategory_UserXStore" FromRole="UserXStore" ToRole="ExpenseCategory" />
+    <NavigationProperty Name="GiftCards" Relationship="NansbookModel.fk_GiftCard_UserXStore" FromRole="UserXStore" ToRole="GiftCard" />
+    <NavigationProperty Name="Notifications" Relationship="NansbookModel.fk_Notification_UserXStore" FromRole="UserXStore" ToRole="Notification" />
+    <NavigationProperty Name="Paychecks" Relationship="NansbookModel.fk_Paycheck_UserXStore" FromRole="UserXStore" ToRole="Paycheck" />
+    <NavigationProperty Name="PaymentMethods" Relationship="NansbookModel.fk_PaymentMethod_UserXStore" FromRole="UserXStore" ToRole="PaymentMethod" />
+    <NavigationProperty Name="Products" Relationship="NansbookModel.fk_Product_UserXStore" FromRole="UserXStore" ToRole="Product" />
+    <NavigationProperty Name="Salaries" Relationship="NansbookModel.fk_Salary_UserXStore" FromRole="UserXStore" ToRole="Salary" />
+    <NavigationProperty Name="Sales" Relationship="NansbookModel.fk_Sale_UserXStore" FromRole="UserXStore" ToRole="Sale" />
+    <NavigationProperty Name="Services" Relationship="NansbookModel.fk_Service_UserXStore" FromRole="UserXStore" ToRole="Service" />
+    <NavigationProperty Name="Store" Relationship="NansbookModel.fk_UserXStore_Store" FromRole="UserXStore" ToRole="Store" />
+    <NavigationProperty Name="UserProfile" Relationship="NansbookModel.fk_UserXStore_UserProfile" FromRole="UserXStore" ToRole="UserProfile" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="ConfirmationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="IsConfirmed" Type="Boolean" />
+    <Property Name="LastPasswordFailureDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="Int32" Nullable="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordChangedDate" Type="DateTime" Precision="3" />
+    <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationToken" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="String" Nullable="false" MaxLength="30" Unicode="true" FixedLength="false" />
+    <Property Name="ProviderUserId" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="UserProfiles" Relationship="NansbookModel.webpages_UsersInRoles" FromRole="webpages_Roles" ToRole="UserProfile" />
+  </EntityType>
+  <Association Name="fk_AppSetting_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="AppSetting" Type="NansbookModel.AppSetting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="AppSetting">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_CommissionRate_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="CommissionRate" Type="NansbookModel.CommissionRate" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CommissionRate">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Deduction_ExpenseCategory">
+    <End Role="ExpenseCategory" Type="NansbookModel.ExpenseCategory" Multiplicity="0..1" />
+    <End Role="Deduction" Type="NansbookModel.Deduction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deduction">
+        <PropertyRef Name="ExpenseCategoryId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Deduction_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Deduction" Type="NansbookModel.Deduction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Deduction">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Discount_Product">
+    <End Role="Product" Type="NansbookModel.Product" Multiplicity="0..1" />
+    <End Role="Discount" Type="NansbookModel.Discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Discount_Service">
+    <End Role="Service" Type="NansbookModel.Service" Multiplicity="0..1" />
+    <End Role="Discount" Type="NansbookModel.Discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Discount_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Discount" Type="NansbookModel.Discount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Discount">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Expense_Product">
+    <End Role="Product" Type="NansbookModel.Product" Multiplicity="0..1" />
+    <End Role="Expense" Type="NansbookModel.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Expense_Service">
+    <End Role="Service" Type="NansbookModel.Service" Multiplicity="0..1" />
+    <End Role="Expense" Type="NansbookModel.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Expense_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Expense" Type="NansbookModel.Expense" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Expense">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_ExpenseCategory_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="ExpenseCategory" Type="NansbookModel.ExpenseCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpenseCategory">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Parent_ExpenseCategory">
+    <End Role="ExpenseCategory" Type="NansbookModel.ExpenseCategory" Multiplicity="0..1" />
+    <End Role="ExpenseCategory1" Type="NansbookModel.ExpenseCategory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ExpenseCategory">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ExpenseCategory1">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_GiftCard_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="GiftCard" Type="NansbookModel.GiftCard" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GiftCard">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Notification_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Notification" Type="NansbookModel.Notification" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Notification">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Paycheck_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Paycheck" Type="NansbookModel.Paycheck" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Paycheck">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_PaymentMethod_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="PaymentMethod" Type="NansbookModel.PaymentMethod" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="PaymentMethod">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Product_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Product" Type="NansbookModel.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_Product">
+    <End Role="Product" Type="NansbookModel.Product" Multiplicity="0..1" />
+    <End Role="Sale" Type="NansbookModel.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Salary_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Salary" Type="NansbookModel.Salary" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Salary">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_Service">
+    <End Role="Service" Type="NansbookModel.Service" Multiplicity="0..1" />
+    <End Role="Sale" Type="NansbookModel.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Service">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="ServiceId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Sale_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Sale" Type="NansbookModel.Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Sale">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion1">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion2">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion2" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_SecurityQuestion3">
+    <End Role="SecurityQuestion" Type="NansbookModel.SecurityQuestion" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecurityQuestion">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="SecQuestion3" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_Service_UserXStore">
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="1" />
+    <End Role="Service" Type="NansbookModel.Service" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserXStore">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Service">
+        <PropertyRef Name="UserXStoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserProfile_State">
+    <End Role="State" Type="NansbookModel.State" Multiplicity="0..1" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserProfile">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserXStore_Store">
+    <End Role="Store" Type="NansbookModel.Store" Multiplicity="0..1" />
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Store">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="UserXStore">
+        <PropertyRef Name="StoreId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserXStore_UserProfile">
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="0..1" />
+    <End Role="UserXStore" Type="NansbookModel.UserXStore" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserProfile">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="UserXStore">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="webpages_UsersInRoles">
+    <End Role="webpages_Roles" Type="NansbookModel.webpages_Roles" Multiplicity="*" />
+    <End Role="UserProfile" Type="NansbookModel.UserProfile" Multiplicity="*" />
+  </Association>
+</Schema>
